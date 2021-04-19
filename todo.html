@@ -155,6 +155,12 @@ input {
   align-items: center;
   justify-content: center;
 }
+.topright{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+          }
 
 
 .link {
@@ -165,7 +171,8 @@ input {
 </style>
 </head>
 <body>
-
+  <p id="date"></p>
+     
     <form  target="_blank" onsubmit='return handleSubmit();'>
       
       <div class="wrapper">
@@ -183,18 +190,19 @@ input {
             <tr>
                 
                 <td class="formBox">
-                    <input class="todo" type="text" id="myInput" required/></td>
+                    <input class="todo" type="text" id="myInput" spellcheck="true" required/><br><br></td>
                 <td class="formBox">
                     <input  class="todo1" type="date" name="Deadline" id="myInput1" required/></td>
                 <td class="formBox">
-                    <input  class="todo2" type="number" name="Percentage" id="myInput2"  ng-min="0" ng-max="100" required/>
+                    <input  class="todo2" type="number" name="Percentage" id="myInput2"  min="0" max="100" required/>
                   </td>
 
 
                 <td>
                   <button type="submit" onclick="newElement()"  class="addBtn" id="myBtn"> Add
+                  </button>
+                </td>
                 
-                  </button></td>
                   </div>
                       
                 
@@ -216,13 +224,25 @@ input {
 
         </form>
 
-        <ul id="columns">
+        <ul id="columns"> 
+          <tr class="ul"> 
+            <button type="submit" onclick="edit()" class="addBtn" id=edit1>Edit</button>
+          </tr>
          </ul>
 
 
+         
 
+         
+          
+          
 
+          
+                
 <script>
+document.getElementById("date").innerHTML = Date(); 
+
+
 var myNodelist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
@@ -253,34 +273,38 @@ list.addEventListener('click', function(ev) {
 
 function newElement() {
  var li = document.createElement("li");
-
+ 
  li.className = "column";
  li.draggable = "true"
 
  var inputValue = document.getElementById("myInput").value;
-
  var inputValue1 = document.getElementById("myInput1").value;
-
  var inputValue2 = document.getElementById("myInput2").value;
-
+  
+ if (inputValue == "") {
+  alert("Please enter a chore!");
+ } 
+ else if (inputValue1 == "") {
+  alert("Please enter the deadline!");
+ } 
+ else if (inputValue2 == "") {
+  alert("Please enter the percentage of the chore that you have already finished!");
+ } 
+ if(inputValue!="" && inputValue1!="" && inputValue2!=""){
 
  var t = document.createTextNode("" + inputValue + "");
  li.appendChild(t);
 
- var tt = document.createTextNode("       |        "+"on" + "  " + inputValue1 + " ");
+ var tt = document.createTextNode("       |        "+"on" + "  " + inputValue1 + " " );
  li.appendChild(tt);
 
  var ttt = document.createTextNode("        |        " +" You have completed " + inputValue2 + " %"  +" of your task" );
  li.appendChild(ttt);
-
- if (inputValue === '') {
-  alert("Looks like you don't have anything to do!");
- } else {
-
+ 
+ 
+ 
   document.getElementById("columns").appendChild(li);
-
- }
- document.getElementById("myInput").value = "";
+  document.getElementById("myInput").value = "";
  document.getElementById("myInput1").value = "";
  document.getElementById("myInput2").value = "";
 
@@ -296,13 +320,19 @@ function newElement() {
    div.style.display = "none";
   }
  }
-}
+
 var inputValue = document.getElementById("myInput");
 
 value = function () {
 document.getElementById("myInput").innerHTML = value;
-
+function edit(){
+    
 }
+}
+
+ }
+}
+
 
 </script>
 

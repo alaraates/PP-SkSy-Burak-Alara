@@ -98,13 +98,25 @@ p {
 
 }
 
+.topleft {
+  position: absolute;
+  top: 2px;
+  left: 300px;
+  font-size: 24px;
+}
+
+
 </style>
 
 
 
 </head>
 <body >
+  <div class="topleft">
+    <p id="date"></p>
+  </div>
     
+
     <div class="perspective-text">
         <div class="perspective-line">
           <p></p>
@@ -127,6 +139,8 @@ p {
         </div>
     </div>
         
-    <script src="js"></script>
+    <script>
+      document.getElementById("date").innerHTML = Date(); 
+    </script>
 </body>
 </html>
